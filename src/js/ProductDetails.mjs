@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { countCartItems, getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 export default class ProductDetails {
 
@@ -20,6 +20,7 @@ export default class ProductDetails {
         const cartItems = getLocalStorage("so-cart") || [];
         cartItems.push(this.product);
         setLocalStorage("so-cart", cartItems);
+        countCartItems();
     }
 
     renderProductDetails() {
