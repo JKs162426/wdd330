@@ -1,4 +1,6 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, loadHeaderFooter } from "./utils.mjs";
+
+loadHeaderFooter();
 
 const cartFooter = document.querySelector(".cart-footer");
 const cartTotalEl = document.querySelector(".cart-total");
