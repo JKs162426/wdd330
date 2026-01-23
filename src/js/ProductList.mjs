@@ -17,18 +17,18 @@ export default class ProductList {
         this.dataSource = dataSource;
         this.listElement = listElement;
     }
+
     async init() {
         const list = await this.dataSource.getData();
-        this.renderList(list);
+        // Temporarily remove tents without a product page
+        // =============================================
+        const excludedIds = ["989CG", "880RT"];
+        const filteredList = list.filter(product => !excludedIds.includes(product.Id));
+        this.renderList(filteredList);
+        // =============================================
     }
 
-    renderList(products) {
-        renderListWithTemplate(
-            productCardTemplate,
-            this.listElement,
-            products,
-            "afterbegin",
-            true
-        );
+    renderList(list) {
+        renderListWithTemplate(productCardTemplate, this.listElement, list);
     }
 }

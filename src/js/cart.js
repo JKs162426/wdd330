@@ -1,4 +1,4 @@
-import { getLocalStorage, loadHeaderFooter } from "./utils.mjs";
+import { countCartItems, getLocalStorage, loadHeaderFooter } from "./utils.mjs";
 
 loadHeaderFooter();
 
@@ -32,9 +32,29 @@ function cartItemTemplate(item) {
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: 1</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
+    <span class="cart-card__remove" data-id="${item.Id}">❌</span>
 </li>`;
 
   return newItem;
 }
 
+function removeFromCart(itemId) {
+  /*
+Remove an item from the cart by its ID
+*/
+  const cartItems = getLocalStorage("so-cart") || [];
+  const updatedCart = cartItems.filter((item) => item.Id !== itemId);
+  localStorage.setItem("so-cart", JSON.stringify(updatedCart));
+  renderCartContents();
+  countCartItems();
+}
+// Handle click event for removing items from the cart
+document.addEventListener("click", (event) => {
+  if (event.target.classList.contains("cart-card__remove")) {
+    const itemId = event.target.dataset.id;
+    removeFromCart(itemId);
+  }
+});
+
+countCartItems();
 renderCartContents();
