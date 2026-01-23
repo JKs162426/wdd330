@@ -1,14 +1,19 @@
 import { countCartItems, getLocalStorage, loadHeaderFooter } from "./utils.mjs";
 
-loadHeaderFooter();
-
-const cartFooter = document.querySelector(".cart-footer");
-const cartTotalEl = document.querySelector(".cart-total");
+async function initCartPage() {
+  await loadHeaderFooter();
+  countCartItems();
+  renderCartContents();
+}
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+
+  const cartFooter = document.querySelector(".cart-footer");
+  const cartTotalEl = document.querySelector(".cart-total");
+
   if (cartItems.length > 0) {
     cartFooter.classList.remove("hide");
     const total = cartItems.reduce((sum, item) => sum + item.FinalPrice, 0);
@@ -39,15 +44,14 @@ function cartItemTemplate(item) {
 }
 
 function removeFromCart(itemId) {
-  /*
-Remove an item from the cart by its ID
-*/
+
   const cartItems = getLocalStorage("so-cart") || [];
   const updatedCart = cartItems.filter((item) => item.Id !== itemId);
   localStorage.setItem("so-cart", JSON.stringify(updatedCart));
   renderCartContents();
   countCartItems();
 }
+
 // Handle click event for removing items from the cart
 document.addEventListener("click", (event) => {
   if (event.target.classList.contains("cart-card__remove")) {
@@ -56,5 +60,4 @@ document.addEventListener("click", (event) => {
   }
 });
 
-countCartItems();
-renderCartContents();
+initCartPage();

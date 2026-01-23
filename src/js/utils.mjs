@@ -61,14 +61,20 @@ export async function loadHeaderFooter() {
 
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
-  
+}
+
 export function countCartItems() {
   const cartCountBadge = document.querySelector(".cart-count-badge");
   const cartCount = document.querySelector(".cart-count");
   const cartItems = getLocalStorage("so-cart") || [];
+
+  if (!cartCountBadge || !cartCount) {
+    return;
+  }
+
   if (cartItems.length === 0) {
     cartCountBadge.classList.add("hide");
-  } else {  
+  } else {
     cartCount.textContent = cartItems.length;
     cartCountBadge.classList.remove("hide");
   }
