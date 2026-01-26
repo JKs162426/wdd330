@@ -241,6 +241,32 @@ button {
   grid-column: 3;
 }
 
+.category {
+  display: grid;
+  grid-template-columns: auto;
+  justify-items: center;
+  padding: 5rem;
+}
+
+.category img {
+  width: 72px;
+  height: 72px;
+}
+
+.category span {
+  margin-top: 1rem;
+  font-weight: 700;
+  color: var(--dark-grey);
+}
+
+.category a {
+  display: grid;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  margin: 1rem;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -254,6 +280,10 @@ button {
   .cart-card {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
+  }
+
+  .category {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 
