@@ -61,7 +61,8 @@ export async function loadHeaderFooter() {
 
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
-  
+}
+
 export function countCartItems() {
   const cartCountBadge = document.querySelector(".cart-count-badge");
   const cartCount = document.querySelector(".cart-count");
