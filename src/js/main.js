@@ -1,12 +1,15 @@
 import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
+import { countCartItems } from "./utils.mjs";
 
-console.log("main.js loaded");
+loadHeaderFooter();
 
 const dataSource = new ProductData("tents");
-const listElement = document.querySelector(".product-list");
-console.log(listElement);
 
-const productList = new ProductList("tents", dataSource, listElement);
+const element = document.querySelector(".product-list");
+
+const productList = new ProductList("Tents", dataSource, element);
 
 productList.init();
+countCartItems();
