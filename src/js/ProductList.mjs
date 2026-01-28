@@ -20,12 +20,8 @@ export default class ProductList {
 
     async init() {
         const list = await this.dataSource.getData(this.category);
-        // Temporarily remove tents without a product page
-        // =============================================
-        const excludedIds = ["989CG", "880RT"];
-        const filteredList = list.filter(product => !excludedIds.includes(product.Id));
-        this.renderList(filteredList);
-        // =============================================
+        this.renderList(list);
+        document.querySelector("#product-title").textContent = this.category.charAt(0).toUpperCase() + this.category.slice(1);
     }
 
     renderList(list) {
