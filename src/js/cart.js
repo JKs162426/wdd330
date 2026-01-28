@@ -1,9 +1,11 @@
-import { countCartItems, getLocalStorage, loadHeaderFooter, setLocalStorage } from "./utils.mjs";
+import {
+  countCartItems,
+  getLocalStorage,
+  loadHeaderFooter,
+  setLocalStorage,
+} from "./utils.mjs";
 
 loadHeaderFooter();
-
-const cartFooter = document.querySelector(".cart-footer");
-const cartTotalEl = document.querySelector(".cart-total");
 
 function renderCartContents() {
   const cartItems = combineDuplicateItems(getLocalStorage("so-cart") || []);
@@ -13,7 +15,7 @@ function renderCartContents() {
 }
 
 function cartItemTemplate(item) {
-  const imageSrc = 
+  const imageSrc =
     item.Images?.PrimaryMedium ||
     item.Images?.PrimaryLarge ||
     item.Image ||
@@ -89,7 +91,6 @@ function getCartTotal() {
   }
   return finalTotal;
 }
-
 
 document.addEventListener("change", (event) => {
   /* Event listener for handling quantity input changes in the cart */
