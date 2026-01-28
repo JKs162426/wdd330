@@ -30,8 +30,18 @@
         <p id="productColor" class="product__color">Color</p>
         <p id="productDesc" class="product__description">Description</p>
         <div class="product-detail__add">
-          <button id="addToCart" data-id="productId">Add to Cart</button>
+          <label
+            >Qty:
+            <input
+              type="number"
+              id="productQuantity"
+              type="number"
+              value="1"
+              min="1"
+            />
+          </label>
         </div>
+        <button id="addToCartButton" data-id="productId">Add to Cart</button>
       </section>
     </main>
 

@@ -11,14 +11,22 @@ export default class ProductDetails {
     async init() {
         this.product = await this.dataSource.findProductById(this.productId);
         this.renderProductDetails();
-        document
-            .getElementById('addToCart')
-            .addEventListener('click', this.addProductToCart.bind(this));
+        const addToCartButton = document.getElementById('addToCartButton');
+        if (addToCartButton) {
+            addToCartButton.addEventListener('click', this.addProductToCart.bind(this));
+        }
     }
 
     addProductToCart() {
         const cartItems = getLocalStorage("so-cart") || [];
-        cartItems.push(this.product);
+        const quantityInput = document.getElementById('productQuantity');
+        const quantity = Math.max(1, parseInt(quantityInput?.value, 10) || 1);
+        const existingItem = cartItems.find(item => item.Id === this.product.Id);
+        if (existingItem) {
+            existingItem.Quantity = (Number(existingItem.Quantity) || 1) + quantity;
+        } else {
+            cartItems.push({ ...this.product, Quantity: quantity });
+        }
         setLocalStorage("so-cart", cartItems);
         countCartItems();
     }
@@ -33,12 +41,12 @@ function productDetailsTemplate(product) {
     document.querySelector('h3').textContent = product.NameWithoutBrand;
 
     const productImage = document.getElementById('productImage');
-    productImage.src = product.Image;
+    productImage.src = product.Images.PrimaryExtraLarge;
     productImage.alt = product.NameWithoutBrand;
 
     document.getElementById('productPrice').textContent = product.FinalPrice;
     document.getElementById('productColor').textContent = product.Colors[0].ColorName;
     document.getElementById('productDesc').innerHTML = product.DescriptionHtmlSimple;
 
-    document.getElementById('addToCart').dataset.id = product.Id;
+    document.getElementById('addToCartButton').dataset.id = product.Id;
 }

@@ -321,6 +321,16 @@ button {
 }
 /* End cart item remove button */
 
+/* Quantity input styles */
+input[type="number"] {
+  width: 50px;
+  padding: 0.2em;
+  font-size: var(--small-font);
+  border-radius: 5px;
+  margin-bottom: 1em;
+}
+/* End quantity input styles */
+
 /* Cart Count */
 .cart-count-badge {
   position: absolute;
