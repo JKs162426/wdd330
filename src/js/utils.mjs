@@ -53,12 +53,11 @@ async function loadTemplate(path) {
 
 
 export async function loadHeaderFooter() {
-  const headerTemplate = await loadTemplate("../public/partials/header.html");
-  const footerTemplate = await loadTemplate("../public/partials/footer.html");
+  const headerTemplate = await loadTemplate(new URL("../public/partials/header.html", import.meta.url));
+  const footerTemplate = await loadTemplate(new URL("../public/partials/footer.html", import.meta.url));
 
-  const headerElement = document.querySelector("#header");
-  const footerElement = document.querySelector("#footer");
-
+  const headerElement = document.querySelector("#main-header");
+  const footerElement = document.querySelector("#main-footer");
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
   countCartItems(); 
