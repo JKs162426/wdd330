@@ -1,6 +1,6 @@
 const baseURL = import.meta.env.VITE_SERVER_URL || "";
 
-function convertToJson(res) {
+async function convertToJson(res) {
   if (res.ok) {
     return res.json();
   } else {
@@ -8,9 +8,9 @@ function convertToJson(res) {
   }
 }
 
-export default class ProductData {
-  constructor() { }
-  
+export default class ExternalServices {
+  constructor() {}
+
   async getData(category) {
     const response = await fetch(`${baseURL}products/search/${category}`);
     const data = await convertToJson(response);
@@ -22,5 +22,17 @@ export default class ProductData {
     const data = await convertToJson(response);
     console.log(data.Result);
     return data.Result;
+  }
+
+  async checkout(order) {
+    const response = await fetch(`${baseURL}checkout`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(order),
+    });
+    const data = await convertToJson(response);
+    return data;
   }
 }

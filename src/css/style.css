@@ -286,6 +286,12 @@ button {
   .category {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
+
+  .checkout-form {
+    grid-template-columns: 1fr;
+    align-items: start;
+    margin: 20px;
+  }
 }
 
 /*Cart $ Total*/
@@ -362,4 +368,54 @@ input[type="number"] {
 footer {
   font-size: var(--small-font);
   padding: 1em;
+}
+
+.checkout-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 20px;
+  margin: 10px;
+}
+
+.checkout-form button {
+  padding: 10px;
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.checkout-form button:hover {
+  background-color: var(--primary-color);
+}
+
+.checkout-form fieldset {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 0.5rem;
+}
+
+.checkout-form legend {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.order-summary {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 0.5rem;
+  margin: 40px;
+}
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+}
+.summary-row.total {
+  font-weight: 700;
 }
