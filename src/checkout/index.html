@@ -8,19 +8,88 @@
 
     <title>Sleep Outside | Checkout</title>
 
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
     <script src="../js/checkout.js" type="module"></script>
   </head>
 
   <body>
-    <header class="divider" id="header"></header>
+    <header class="divider" id="main-header"></header>
 
     <main class="divider">
       <section class="products">
         <h2>Review & Place your Order</h2>
       </section>
+      <div class="checkout-form">
+        <form>
+          <fieldset>
+            <legend>Customer Name</legend>
+            <label for="customer-name">First Name</label>
+            <input type="text" id="customer-name" name="fname" required />
+
+            <label for="customer-lastname">Last Name</label>
+            <input type="text" id="customer-lastname" name="lname" required />
+          </fieldset>
+          <fieldset>
+            <legend>Address</legend>
+            <label for="customer-address">Street Address</label>
+            <input type="text" id="customer-address" name="street" required />
+
+            <label for="customer-city">City</label>
+            <input type="text" id="customer-city" name="city" required />
+
+            <label for="customer-state">State</label>
+            <input type="text" id="customer-state" name="state" required />
+
+            <label for="customer-zip">Zip Code</label>
+            <input type="text" id="customer-zip" name="zip" required />
+          </fieldset>
+          <fieldset>
+            <legend>Payment</legend>
+            <label for="card-number">Card Number</label>
+            <input type="text" id="card-number" name="cardNumber" required />
+
+            <label for="card-expiration">Expiration Date</label>
+            <input
+              type="text"
+              id="card-expiration"
+              name="expiration"
+              required
+            />
+
+            <label for="card-cvv">Security Code</label>
+            <input type="text" id="card-cvv" name="code" required />
+          </fieldset>
+
+          <button type="submit">Checkout</button>
+        </form>
+      </div>
+      <section id="order-summary">
+        <h2>Order Summary</h2>
+
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="subtotal">$0.00</span>
+        </div>
+
+        <div class="summary-row">
+          <span>Tax</span>
+          <span id="tax">$0.00</span>
+        </div>
+
+        <div class="summary-row">
+          <span>Shipping Estimate</span>
+          <span id="shipping">$0.00</span>
+        </div>
+
+        <hr />
+
+        <div class="summary-row total">
+          <span>Order Total</span>
+          <span id="orderTotal">$0.00</span>
+        </div>
+      </section>
     </main>
 
-    <footer id="footer"></footer>
+    <footer id="main-footer"></footer>
   </body>
 </html>
